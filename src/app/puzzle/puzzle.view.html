@@ -1,0 +1,84 @@
+<div class="bodySection">
+	<div class="spaceBetween">
+		<div>
+			<img src="/app/images/logopag.png">
+		</div>
+		<div class="subTitleGame">パズル</div>
+		<div class="startDiv">
+			<button (click)="initial()" class="startButton">Start</button>
+		</div>
+	</div>
+	<div class="displayFlex" *ngIf="isReady">
+		<div class="leftSection spaceAround">
+			<div>
+			<div class="displayFlex rowPuzzle">
+				<div class="imageDiv">
+					<button id="puzzle1" class="buttonPuzzle" (click)="selectP(1)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle5" class="buttonPuzzle" (click)="selectP(5)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle9" class="buttonPuzzle" (click)="selectP(9)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle13" class="buttonPuzzle" (click)="selectP(13)" [disabled]="solvedPuzzle"></button>
+				</div>
+			</div>
+			<div class="displayFlex rowPuzzle">
+				<div class="imageDiv">
+					<button id="puzzle2" class="buttonPuzzle" (click)="selectP(2)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle6" class="buttonPuzzle" (click)="selectP(6)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle10" class="buttonPuzzle" (click)="selectP(10)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle14" class="buttonPuzzle" (click)="selectP(14)" [disabled]="solvedPuzzle"></button>
+				</div>
+			</div>
+			<div class="displayFlex rowPuzzle">
+				<div class="imageDiv">
+					<button id="puzzle3" class="buttonPuzzle" (click)="selectP(3)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle7" class="buttonPuzzle" (click)="selectP(7)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle11" class="buttonPuzzle" (click)="selectP(11)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle15" class="buttonPuzzle" (click)="selectP(15)" [disabled]="solvedPuzzle"></button>
+				</div>
+			</div>
+			<div class="displayFlex rowPuzzle">
+				<div>
+					<button id="puzzle4" class="buttonPuzzle" (click)="selectP(4)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle8" class="buttonPuzzle" (click)="selectP(8)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle12" class="buttonPuzzle" (click)="selectP(12)" [disabled]="solvedPuzzle"></button>
+				</div>
+				<div class="imageDiv">
+					<button id="puzzle16" class="buttonPuzzle" (click)="selectP(16)" [disabled]="solvedPuzzle"></button>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="rightSection">
+			<div [ngClass]="{'yellowLetter':seconds < 41 && 20 < seconds, 'greenLetter': 40 < seconds, 'redLetter':seconds < 21}" class="timeDiv">{{seconds}}</div>
+			<div class="pronunciation">{{puzzles[currentPuzzle].kun}}</div>
+			<div class="pronunciation">{{puzzles[currentPuzzle].on}}</div>
+			<div *ngIf="solvedPuzzle">
+				<div class="subtitleRight">いみ:</div>
+				<div class="optionDiv" *ngFor="let myOption of puzzles[currentPuzzle].options">
+					<button class="buttonOption" (click)="selectOption(myOption.isCorrect)">{{myOption.text}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

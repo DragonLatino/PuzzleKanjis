@@ -1,0 +1,78 @@
+.subTitleGame{
+	font-size: 70px;
+	margin: 18px auto;
+}
+.startDiv{
+	margin: 35px 50px;
+}
+.displayFlex {
+	display: flex;
+}
+.spaceAround{
+	justify-content: space-around;
+	display: flex;
+}
+.spaceBetween{
+	justify-content: space-between;
+	display: flex;
+}
+.imageDiv{
+	width: 150px;
+	height: 150px;
+}
+.rowPuzzle{
+	width: 700px;
+}
+.buttonPuzzle{
+	cursor: pointer;
+    border: none;
+    width: 150px;
+    height: 150px;
+}
+.startButton{
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+}
+.pronunciation{
+	font-size: 50px;
+	word-spacing: 30px;
+}
+.buttonOption{
+	width: 300px;
+	height: 50px;
+	font-size: 20px;
+}
+.leftSection{
+	width: 70%;
+	overflow: auto;
+	text-align: center
+}
+.rightSection{
+	text-align: center;
+	width: 30%;
+	margin-top: -40px;
+}
+.optionDiv{
+	margin: 30px 0;
+}
+.bodySection{
+	padding: 2px 10px;
+}
+.subtitleRight{
+	font-size: 30px;
+	margin: 20px 0;
+}
+.redLetter{
+	color: #E70000;
+}
+.yellowLetter{
+	color: #E8CF00;
+}
+.greenLetter{
+	color: #81CB00;
+}
+.timeDiv{
+	font-size: 100px;
+	font-family: Arial Black;
+}
