@@ -21,7 +21,7 @@
 	height: 150px;
 }
 .rowPuzzle{
-	width: 700px;
+	width: 600px;
 }
 .buttonPuzzle{
 	cursor: pointer;
@@ -45,7 +45,7 @@
 }
 .leftSection{
 	width: 70%;
-	overflow: auto;
+	overflow: hidden;
 	text-align: center
 }
 .rightSection{
@@ -75,4 +75,26 @@
 .timeDiv{
 	font-size: 100px;
 	font-family: Arial Black;
+}
+.positionRelative{
+	position: relative;
+}
+.imageTache{
+	width: 500px;
+	height: 500px;
+}
+.imagePaloma{
+	width: 500px;
+	height: 500px;
+}
+.centerImage{
+	position: absolute;
+	top: 80px;
+	left: 600px;
+}
+.borderCorrect{
+	border: 3px solid #6f6;
+}
+.borderWrong{
+	border: 3px solid red;
 }

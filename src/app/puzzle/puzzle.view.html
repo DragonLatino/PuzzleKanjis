@@ -5,10 +5,15 @@
 		</div>
 		<div class="subTitleGame">パズル</div>
 		<div class="startDiv">
-			<button (click)="initial()" class="startButton">Start</button>
+			<button (click)="initial()" class="startButton" *ngIf="!isPlaying">スタート</button>
+			<button (click)="goBackHomeMenu()" class="startButton" *ngIf="isPlaying">リターン</button>
 		</div>
 	</div>
-	<div class="displayFlex" *ngIf="isReady">
+	<div class="displayFlex positionRelative" *ngIf="isReady">
+		<div class="centerImage" *ngIf="isFinish">
+			<img *ngIf="!isWinner" class="imageTache" src="/app/images/tache.png">
+			<img *ngIf="isWinner" class="imagePaloma" src="/app/images/paloma.png">
+		</div>
 		<div class="leftSection spaceAround">
 			<div>
 			<div class="displayFlex rowPuzzle">
@@ -76,7 +81,7 @@
 			<div *ngIf="solvedPuzzle">
 				<div class="subtitleRight">いみ:</div>
 				<div class="optionDiv" *ngFor="let myOption of puzzles[currentPuzzle].options">
-					<button class="buttonOption" (click)="selectOption(myOption.isCorrect)">{{myOption.text}}</button>
+					<button class="buttonOption" (click)="selectOption(myOption)" [disabled]="isFinish" [ngClass]="{'borderCorrect': isFinish && myOption.isCorrect, 'borderWrong': isFinish && myOption.wrong}">{{myOption.text}}</button>
 				</div>
 			</div>
 		</div>

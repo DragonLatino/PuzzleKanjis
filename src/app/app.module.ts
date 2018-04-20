@@ -6,13 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
+import { HomeMenuComponent } from './home-menu/home-menu.component';
+
 import { PuzzleComponent } from './puzzle/puzzle.component';
 import { PuzzleService } from './puzzle/puzzle.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PuzzleComponent
+    PuzzleComponent,
+    HomeMenuComponent
   ],
   imports: [
     BrowserModule,

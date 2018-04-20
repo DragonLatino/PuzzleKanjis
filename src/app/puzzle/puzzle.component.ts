@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { PuzzleService } from './puzzle.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'puzzle',
@@ -13,22 +14,32 @@ export class PuzzleComponent{
 	puzzle;
 	puzzles;
 	currentSelected = 0;
-	currentPuzzle = -1;
+	currentPuzzle;
 	currentNamePuzzle : String;
 	correctPieces : number;
 	isReady = false;
 	seconds: number;
 	solvedPuzzle = false;
+	isPlaying = false;
+	isWinner = false;
+	isFinish = false;
 
-	constructor(private cdRef: ChangeDetectorRef, private puzzleService: PuzzleService){
+	constructor(private cdRef: ChangeDetectorRef, private router: Router,
+		private puzzleService: PuzzleService){
 		this.puzzles = puzzleService.getPuzzles();
+		this.currentPuzzle = this.puzzleService.getCurrentPuzzle();
+		if (this.puzzles.length === 0) {
+			router.navigate(['home-menu']);
+		}
 	}
 
 	initial(){
 		if (this.seconds > 0) {
 			this.sub.unsubscribe();
 		}
-		this.currentPuzzle++;
+		this.isPlaying = true;
+		this.isWinner = false;
+		this.isFinish = false;
 		this.solvedPuzzle = false;
 		this.isReady = true;
 		this.cdRef.detectChanges();
@@ -53,7 +64,14 @@ export class PuzzleComponent{
 		this.seconds--;
 		if (this.seconds === 0) {
 			this.sub.unsubscribe();
-			alert('Perdiste');
+			this.isFinish = true;
+			this.isPlaying = false;
+			this.isWinner = false;
+			for (var k = 0; k < 16; k++) {
+				document.getElementById('puzzle' + (k+1)).style.background =
+					'url(/app/images/' + this.currentNamePuzzle + (k+1) + '.jpg) no-repeat';
+			}
+			this.solvedPuzzle = true;
 		}
 	}
 
@@ -100,17 +118,21 @@ export class PuzzleComponent{
 		}
 	}
 
-	selectOption(isCorrect){
-		if (isCorrect) {
-			alert('Ganaste');
+	selectOption(myOption){
+		this.isPlaying = false;
+		this.isFinish = true;
+		if (myOption.isCorrect) {
+			this.isWinner = true;
 		} else {
-			alert('Perdiste');
+			this.isWinner = false;
+			myOption.wrong = true;
 		}
 		this.sub.unsubscribe();
 	}
 
 	selectP(button) {
 		var aux;
+		this.isWinner = !this.isWinner;
 		if (button === this.currentSelected){
 			this.currentSelected = 0;
 			document.getElementById('puzzle' + button).style.border = 'none';

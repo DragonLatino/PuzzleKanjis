@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PuzzleService {
-	currentLesson = 17;
+	currentLesson = 0;
+	currentPuzzle16 = -1;
+	currentPuzzle17 = -1;
 
 	puzzlesLesson16 = [{
 		name : 'kanjis/joven/kanji-joven',
@@ -447,6 +449,16 @@ export class PuzzleService {
 		}
 		return [];
 	}
+
+	getCurrentPuzzle(){
+		if (this.currentLesson === 16) {
+			return ++this.currentPuzzle16;
+		} else if (this.currentLesson === 17) {
+			return ++this.currentPuzzle17;
+		}
+		return -1;
+	}
+
 	constructor() {
 		this.randomPuzzles(this.puzzlesLesson16);
 		this.randomPuzzles(this.puzzlesLesson17);
