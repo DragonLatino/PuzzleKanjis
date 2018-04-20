@@ -4,11 +4,15 @@
 			<img src="/app/images/logopag.png">
 		</div>
 		<div class="subTitleGame">パズル</div>
-		<div class="startDiv">
-		</div>
 	</div>
-	<div>
-		<button (click)="goToLesson(16)">Lección 16</button>
-		<button (click)="goToLesson(17)">Lección 17</button>
+	<div class="buttonLessons">
+		<button (click)="goToLesson(16)" [disabled]="currentPuzzle16 === 11" class="buttonOption">第十六課</button>
+		<button (click)="goToLesson(17)" [disabled]="currentPuzzle17 === 11" class="buttonOption marginTop100px">第十七課</button>
+	</div>
+	<div class="displayFlex textAlignCenter" *ngIf="randomLesson !== 1">
+		<button (click)="selectedRandom()" class="buttonOption">Random</button>
+		<div class="pronunciation marginLeft30px">{{randomLesson}}</div>
+		<button (click)="selectedRandomPunish()" class="buttonOption marginLeft30px">Castigo</button>
+		<div class="pronunciation">{{punishText}}</div>
 	</div>
 </div>

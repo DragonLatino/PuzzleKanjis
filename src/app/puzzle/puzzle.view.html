@@ -5,8 +5,8 @@
 		</div>
 		<div class="subTitleGame">パズル</div>
 		<div class="startDiv">
-			<button (click)="initial()" class="startButton" *ngIf="!isPlaying">スタート</button>
-			<button (click)="goBackHomeMenu()" class="startButton" *ngIf="isPlaying">リターン</button>
+			<button (click)="initial()" class="startButton" *ngIf="!isFinish" [disabled]="isPlaying">スタート</button>
+			<button (click)="goBackToHomeMenu()" class="startButton" *ngIf="isFinish">リターン</button>
 		</div>
 	</div>
 	<div class="displayFlex positionRelative" *ngIf="isReady">

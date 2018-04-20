@@ -27,8 +27,8 @@ export class PuzzleComponent{
 	constructor(private cdRef: ChangeDetectorRef, private router: Router,
 		private puzzleService: PuzzleService){
 		this.puzzles = puzzleService.getPuzzles();
-		this.currentPuzzle = this.puzzleService.getCurrentPuzzle();
-		if (this.puzzles.length === 0) {
+		this.currentPuzzle = this.puzzleService.getCurrentPuzzle(true);
+		if (this.puzzles.length === 0 || this.currentPuzzle === 12) {
 			router.navigate(['home-menu']);
 		}
 	}
@@ -55,15 +55,22 @@ export class PuzzleComponent{
 			document.getElementById('puzzle' + (k+1)).style.background =
 				'url(/app/images/' + this.currentNamePuzzle + this.puzzle[k] + '.jpg) no-repeat';
 		}
-		this.seconds = 75;
+		this.seconds = 121;
 		this.timer = Observable.timer(0, 1000);
   		this.sub = this.timer.subscribe(t => this.updateTime());
+	}
+
+	goBackToHomeMenu () {
+		this.router.navigate(['home-menu']);
 	}
 
 	updateTime() {
 		this.seconds--;
 		if (this.seconds === 0) {
 			this.sub.unsubscribe();
+			if (document.getElementById('puzzle' + this.currentSelected)) {
+				document.getElementById('puzzle' + this.currentSelected).style.border = 'none';
+			}
 			this.isFinish = true;
 			this.isPlaying = false;
 			this.isWinner = false;
@@ -142,7 +149,7 @@ export class PuzzleComponent{
 		} else {
 			document.getElementById('puzzle' + this.currentSelected).style.border = 'none';
 			aux = document.getElementById('puzzle' + button).style.background;
-			document.getElementById('puzzle' + button).style.background = 
+			document.getElementById('puzzle' + button).style.background =
 				document.getElementById('puzzle' + this.currentSelected).style.background;
 			document.getElementById('puzzle' + this.currentSelected).style.background = aux;
 			aux = this.puzzle[button-1];

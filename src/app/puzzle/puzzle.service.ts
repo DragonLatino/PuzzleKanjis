@@ -359,7 +359,7 @@ export class PuzzleService {
 			isCorrect: false
 		},{
 			text : 'Flor sin fruto',
-			isCorrect: false
+			isCorrect: true
 		},{
 			text : 'Inglaterra',
 			isCorrect: false
@@ -450,11 +450,13 @@ export class PuzzleService {
 		return [];
 	}
 
-	getCurrentPuzzle(){
+	getCurrentPuzzle(sum){
 		if (this.currentLesson === 16) {
-			return ++this.currentPuzzle16;
+			if (sum) this.currentPuzzle16++;
+			return this.currentPuzzle16;
 		} else if (this.currentLesson === 17) {
-			return ++this.currentPuzzle17;
+			if (sum) this.currentPuzzle17++;
+			return this.currentPuzzle17;
 		}
 		return -1;
 	}

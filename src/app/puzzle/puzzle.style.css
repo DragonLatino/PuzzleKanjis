@@ -25,9 +25,9 @@
 }
 .buttonPuzzle{
 	cursor: pointer;
-    border: none;
-    width: 150px;
-    height: 150px;
+  border: none;
+  width: 150px;
+  height: 150px;
 }
 .startButton{
 	width: 200px;
